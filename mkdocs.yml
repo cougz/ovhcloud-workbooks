@@ -1,6 +1,6 @@
 site_name: OVH Workbooks
 site_description: Comprehensive tutorials and workbooks for OVHcloud services
-site_url: https://yourusername.github.io/ovh-workbooks
+site_url: https://cougz.github.io/ovhcloud-workbooks
 
 theme:
   name: material
