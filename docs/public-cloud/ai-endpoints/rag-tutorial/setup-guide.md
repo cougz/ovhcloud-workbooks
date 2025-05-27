@@ -1,28 +1,85 @@
-# \# RAG Tutorial Setup Guide
+# RAG Tutorial Setup Guide
+
+!!! info "About this guide"
+    This step-by-step tutorial will walk you through building a production-ready RAG system using OVHcloud AI Endpoints. Follow each step carefully to ensure a successful setup.
+
+## Prerequisites
+
+- [ ] OVHcloud account with AI Endpoints access
+- [ ] Basic Python knowledge
+- [ ] Linux environment (Debian 12 recommended)
 
 ## Step 1: Update System and Install Python
 
-```bash
-# Update package list and upgrade system
-sudo apt update && sudo apt upgrade -y
+!!! tip "System Requirements"
+    This tutorial requires Python 3.11+ and pip. The commands below will ensure your system is up-to-date.
 
-# Install Python 3.11+ and pip
-sudo apt install python3 python3-pip python3-venv curl -y
+=== "Debian/Ubuntu"
+    ```bash
+    # Update package list and upgrade system
+    sudo apt update && sudo apt upgrade -y
 
-# Verify Python version (should be 3.11+)
-python3 --version
-```
+    # Install Python 3.11+ and pip
+    sudo apt install python3 python3-pip python3-venv curl -y
+
+    # Verify Python version (should be 3.11+)
+    python3 --version
+    ```
+
+=== "CentOS/RHEL"
+    ```bash
+    # Update package list and upgrade system
+    sudo yum update -y
+    
+    # Install Python 3.11+ and pip
+    sudo yum install python3 python3-pip python3-venv curl -y
+    
+    # Verify Python version (should be 3.11+)
+    python3 --version
+    ```
+
+=== "macOS"
+    ```bash
+    # Install Homebrew if not already installed
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    # Install Python 3.11+
+    brew install python@3.11
+    
+    # Verify Python version
+    python3 --version
+    ```
 
 ## Step 2: Get OVHcloud AI Endpoints Access Token
 
-To get your access token from OVHcloud:
+!!! warning "API Token Required"
+    This tutorial requires an OVHcloud AI Endpoints access token. Without this token, you won't be able to access the embedding and LLM APIs.
 
-1.  Go to [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)
-2.  Create an account or log in
-3.  Navigate to **Public Cloud**
-4.  Create a new Public Cloud Project or select an existing one
-5.  Navigate to **AI Endpoints** → **API keys** and click on **Create a new API key**
-6.  Copy the token for further use
+### Access Token Steps
+
+- [ ] Go to [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)
+- [ ] Create an account or log in to your existing account
+- [ ] Navigate to **Public Cloud** in the dashboard
+- [ ] Create a new Public Cloud Project or select an existing one
+- [ ] Navigate to **AI Endpoints** → **API keys** section
+- [ ] Click on **Create a new API key** button
+- [ ] Copy the generated token for use in this tutorial
+
+!!! tip "Token Security"
+    Your API token is sensitive information. Never share it publicly or commit it to version control systems. We'll use environment variables to keep it secure.
+
+```mermaid
+flowchart TD
+    A[Start] --> B[Create OVHcloud Account]
+    B --> C[Navigate to Public Cloud]
+    C --> D[Select/Create Project]
+    D --> E[Go to AI Endpoints]
+    E --> F[Create API Key]
+    F --> G[Copy Token]
+    G --> H[Use in Tutorial]
+    style F fill:#f96,stroke:#333,stroke-width:2px
+    style G fill:#f96,stroke:#333,stroke-width:2px
+```
 
 ## Step 3: Create Project Directory and Virtual Environment
 
