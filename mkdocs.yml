@@ -34,7 +34,7 @@ theme:
     - navigation.instant
 
 nav:
-  - English:
+  - 🇺🇸 English:
     - Home: en/index.md
     - Public Cloud:
       - en/public-cloud/index.md
@@ -43,7 +43,7 @@ nav:
         - RAG Tutorial:
           - en/public-cloud/ai-endpoints/rag-tutorial/index.md
           - Setup Guide: en/public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
-  - Français:
+  - 🇫🇷 Français:
     - Accueil: fr/index.md
     - Cloud Public:
       - fr/public-cloud/index.md
@@ -52,7 +52,7 @@ nav:
         - Tutoriel RAG:
           - fr/public-cloud/ai-endpoints/rag-tutorial/index.md
           - Guide d'installation: en/public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
-  - Deutsch:
+  - 🇩🇪 Deutsch:
     - Startseite: de/index.md
     - Public Cloud:
       - de/public-cloud/index.md
