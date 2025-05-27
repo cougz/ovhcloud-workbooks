@@ -1,6 +1,6 @@
-# KI-Endpunkte Workbooks
+# AI Endpoints Workbooks
 
-Lernen Sie, KI-Anwendungen mit OVHcloud KI-Endpunkten zu erstellen.
+Lernen Sie, KI-Anwendungen mit OVHcloud AI Endpoints zu erstellen.
 
 ## Verfügbare Tutorials
 

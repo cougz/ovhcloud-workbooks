@@ -56,7 +56,7 @@ nav:
     - Startseite: de/index.md
     - Public Cloud:
       - de/public-cloud/index.md
-      - KI-Endpunkte:
+      - AI Endpoints:
         - de/public-cloud/ai-endpoints/index.md
         - RAG-Tutorial:
           - de/public-cloud/ai-endpoints/rag-tutorial/index.md

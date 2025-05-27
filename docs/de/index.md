@@ -6,8 +6,8 @@ Willkommen zur umfassenden Sammlung von Tutorials und Arbeitsbüchern für OVHcl
 
 ### Public Cloud
 
-#### KI-Endpunkte
-- [**RAG-Tutorial**](/ovhcloud-workbooks/de/public-cloud/ai-endpoints/rag-tutorial/) - Erstellen Sie produktionsreife RAG-Systeme mit OVHcloud KI-Endpunkten
+#### AI Endpoints
+- [**RAG-Tutorial**](/ovhcloud-workbooks/de/public-cloud/ai-endpoints/rag-tutorial/) - Erstellen Sie produktionsreife RAG-Systeme mit OVHcloud AI Endpoints
 
 ### Demnächst verfügbar
 - Object Storage Tutorials
