@@ -31,7 +31,7 @@ theme:
     - content.code.copy
     - navigation.indexes
     - content.tabs.link
-  logo: docs/assets/ovhcloud.svg  # Updated path
+  logo: assets/ovhcloud.svg
 
 plugins:
   - search
@@ -40,30 +40,18 @@ plugins:
       fallback_to_default: true
       reconfigure_material: true
       reconfigure_search: true
+      default_language: en
+      default_language_only: false
       languages:
-        - locale: en
-          default: true
+        en:
           name: 🇺🇸 English
           build: true
-        - locale: fr
+        fr:
           name: 🇫🇷 Français
           build: true
-        - locale: de
+        de:
           name: 🇩🇪 Deutsch
           build: true
-
-# Add explicit language selector configuration
-extra:
-  alternate:
-    - name: 🇺🇸 English
-      link: /ovhcloud-workbooks/
-      lang: en
-    - name: 🇫🇷 Français
-      link: /ovhcloud-workbooks/fr/
-      lang: fr
-    - name: 🇩🇪 Deutsch
-      link: /ovhcloud-workbooks/de/
-      lang: de
 
 nav:
   - Home: index.md
