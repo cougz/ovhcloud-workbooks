@@ -12,7 +12,7 @@ A comprehensive collection of tutorials and workbooks for OVHcloud TechLabs.
 ### Public Cloud
 
 #### AI Endpoints
-- **RAG Tutorial** - Build production-ready RAG systems using OVHcloud AI Endpoints
+- **RAG Tutorial** - Build lab-ready RAG systems using OVHcloud AI Endpoints
 
 ## Development
 

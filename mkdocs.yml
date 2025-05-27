@@ -37,12 +37,12 @@ nav:
   - English:
     - Home: index.md
     - Public Cloud:
-      - public-cloud/index.md
+      - en/public-cloud/index.md
       - AI Endpoints:
-        - public-cloud/ai-endpoints/index.md
+        - en/public-cloud/ai-endpoints/index.md
         - RAG Tutorial:
-          - public-cloud/ai-endpoints/rag-tutorial/index.md
-          - Setup Guide: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+          - en/public-cloud/ai-endpoints/rag-tutorial/index.md
+          - Setup Guide: en/public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
   - Français:
     - Accueil: fr/index.md
     - Cloud Public:
@@ -51,7 +51,7 @@ nav:
         - fr/public-cloud/ai-endpoints/index.md
         - Tutoriel RAG:
           - fr/public-cloud/ai-endpoints/rag-tutorial/index.md
-          - Guide d'installation: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+          - Guide d'installation: en/public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
   - Deutsch:
     - Startseite: de/index.md
     - Public Cloud:
@@ -60,14 +60,14 @@ nav:
         - de/public-cloud/ai-endpoints/index.md
         - RAG-Tutorial:
           - de/public-cloud/ai-endpoints/rag-tutorial/index.md
-          - Einrichtungsanleitung: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+          - Einrichtungsanleitung: en/public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
 
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets:
-      base_path: ['.', 'public-cloud/ai-endpoints/rag-tutorial/scripts']
+      base_path: ['.', 'public-cloud/ai-endpoints/rag-tutorial/scripts', 'docs/en/public-cloud/ai-endpoints/rag-tutorial/scripts']
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
