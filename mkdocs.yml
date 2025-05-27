@@ -31,7 +31,7 @@ theme:
     - content.code.copy
     - navigation.indexes
     - content.tabs.link
-  logo: assets/ovhcloud.svg
+  logo: docs/assets/ovhcloud.svg  # Updated path
 
 plugins:
   - search
@@ -51,6 +51,19 @@ plugins:
         - locale: de
           name: 🇩🇪 Deutsch
           build: true
+
+# Add explicit language selector configuration
+extra:
+  alternate:
+    - name: 🇺🇸 English
+      link: /ovhcloud-workbooks/
+      lang: en
+    - name: 🇫🇷 Français
+      link: /ovhcloud-workbooks/fr/
+      lang: fr
+    - name: 🇩🇪 Deutsch
+      link: /ovhcloud-workbooks/de/
+      lang: de
 
 nav:
   - Home: index.md
