@@ -1,4 +1,4 @@
-# OVH Workbooks
+# OVHcloud TechLabs - Workbooks
 
 Welcome to the comprehensive collection of tutorials and workbooks for OVHcloud services.
 
