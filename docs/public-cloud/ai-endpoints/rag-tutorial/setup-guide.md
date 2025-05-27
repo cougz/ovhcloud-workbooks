@@ -1,5 +1,8 @@
-# RAG Tutorial Setup Guide
-Step 1: Update System and Install Python
+# \# RAG Tutorial Setup Guide
+
+## Step 1: Update System and Install Python
+
+```bash
 # Update package list and upgrade system
 sudo apt update && sudo apt upgrade -y
 
@@ -8,17 +11,22 @@ sudo apt install python3 python3-pip python3-venv curl -y
 
 # Verify Python version (should be 3.11+)
 python3 --version
-Step 2: Get OVHcloud AI Endpoints Access Token
+```
+
+## Step 2: Get OVHcloud AI Endpoints Access Token
 
 To get your access token from OVHcloud:
 
-Go to OVHcloud AI Endpoints
-Create an account or log in
-Navigate to Public Cloud
-Create a new Public Cloud Project or select an existing one
-Navigate to AI Endpoints → API keys and click on Create a new API key
-Copy the token for further use
-Step 3: Create Project Directory and Virtual Environment
+1.  Go to [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)
+2.  Create an account or log in
+3.  Navigate to **Public Cloud**
+4.  Create a new Public Cloud Project or select an existing one
+5.  Navigate to **AI Endpoints** → **API keys** and click on **Create a new API key**
+6.  Copy the token for further use
+
+## Step 3: Create Project Directory and Virtual Environment
+
+```bash
 # Create project directory
 mkdir ~/rag-ovh-test
 cd ~/rag-ovh-test
@@ -31,15 +39,21 @@ source venv/bin/activate
 
 # Upgrade pip
 pip install --upgrade pip
-Step 4: Install Required Dependencies
+```
+
+## Step 4: Install Required Dependencies
+
+```bash
 # Install ALL required dependencies for OVHcloud integration
 pip install langchain langchain-community faiss-cpu requests openai python-dotenv numpy
 
 # Verify installations
 pip list | grep -E "(langchain|faiss|requests|openai|numpy)"
+```
 
 You should see output like:
 
+```
 faiss-cpu                1.11.0
 langchain                0.3.25
 langchain-community      0.3.24
@@ -49,15 +63,28 @@ numpy                    2.2.6
 openai                   1.82.0
 requests                 2.32.3
 requests-toolbelt        1.0.0
-Step 5: Set Up Environment Variables
+```
+
+## Step 5: Set Up Environment Variables
+
+```bash
 # Create environment file
 nano .env
+```
 
 Add your actual OVHcloud token:
 
+```
 OVH_AI_ENDPOINTS_ACCESS_TOKEN=your_actual_token_here
-Step 6: Test OVHcloud API Connectivity
+```
+
+## Step 6: Test OVHcloud API Connectivity
+
+```bash
 nano test_ovh_connection.py
+```
+
+```python
 import os
 import requests
 from dotenv import load_dotenv
@@ -160,21 +187,33 @@ if __name__ == "__main__":
         print("You can proceed with RAG testing.")
     else:
         print("\n⚠️  Some APIs failed. Check your token and try again.")
-Step 7: Run API Connectivity Test
+```
+
+## Step 7: Run API Connectivity Test
+
+```bash
 # Run the connection test
 python test_ovh_connection.py
+```
 
 You should see output like:
 
+```
 Testing bge-multilingual-gemma2...
 ✅ bge-multilingual-gemma2 works! Dimensions: 3584 (expected: 3584)
 First 5 values: [-0.63427734, -1.53125, 5.6796875, -4.9648438, 0.7944336]
 ✅ LLM API works! Response: Hello, it's nice to meet you and I'm here to help with any questions or topics you'd like to discuss.
+```
 
-Note: The negative values in embeddings are normal - they represent coordinates in high-dimensional space and can be positive or negative.
+**Note**: The negative values in embeddings are normal - they represent coordinates in high-dimensional space and can be positive or negative.
 
-Step 8: Create Full RAG Test Script
+## Step 8: Create Full RAG Test Script
+
+```bash
 nano test_rag_ovh.py
+```
+
+```python
 import os
 import requests
 from langchain.schema import Document
@@ -348,12 +387,18 @@ def main():
 
 if __name__ == "__main__":
     main()
-Step 9: Run Full RAG Test
+```
+
+## Step 9: Run Full RAG Test
+
+```bash
 # Run the complete RAG system test
 python test_rag_ovh.py
+```
 
 Expected output:
 
+```
 🔧 Setting up RAG system...
 📊 Creating embeddings...
 🤖 Setting up LLM...
@@ -363,11 +408,17 @@ Expected output:
 ❓ Question: My video export keeps crashing
 💬 Answer: This sounds like the known 4GB file issue on Mac systems...
 📚 Sources: Chunk 1, Chunk 2
-Step 10: Performance Testing
+```
+
+## Step 10: Performance Testing
 
 Create and run a comprehensive performance test that compares all three embedding models:
 
+```bash
 nano performance_test.py
+```
+
+```python
 import time
 from test_rag_ovh import OVHEmbeddings, OVHLLM, Document
 from langchain_community.vectorstores import FAISS
@@ -467,13 +518,17 @@ def test_performance():
 
 if __name__ == "__main__":
     test_performance()
+```
 
-Run the performance test:
+**Run the performance test:**
 
+```bash
 python performance_test.py
+```
 
 Expected output:
 
+```
 🚀 Starting comprehensive performance test...
 
 🧪 Testing bge-base-en-v1.5...
@@ -488,11 +543,17 @@ Model                     Dimensions   Setup      Query
 bge-base-en-v1.5         768          0.85s      1.45s     
 bge-m3                   1024         0.95s      1.60s     
 bge-multilingual-gemma2  3584         1.16s      1.99s
-Step 11: Test OVHcloud Documentation Examples
+```
+
+## Step 11: Test OVHcloud Documentation Examples
 
 Create and run a test that matches OVHcloud's official documentation:
 
+```bash
 nano test_ovh_docs_example.py
+```
+
+```python
 import os
 import requests
 import numpy as np
@@ -567,25 +628,31 @@ if __name__ == "__main__":
         print(f"Working URL: {working_url}")
     else:
         print("\n❌ All models failed. Check your token.")
+```
 
-Run this test:
+**Run this test:**
 
+```bash
 python test_ovh_docs_example.py
+```
 
 You should see output showing successful embedding generation and similarity calculations.
 
-Step 12: Experiment and Customize
+## Step 12: Experiment and Customize
 
 Now that everything is working, try customizing the scripts to deepen your understanding:
 
-A. Test Different Knowledge Bases
+### A. Test Different Knowledge Bases
 
-Edit test_rag_ovh.py and replace the chunks with your own content:
+Edit `test_rag_ovh.py` and replace the chunks with your own content:
 
+```bash
 nano test_rag_ovh.py
+```
 
-Find the chunks = [...] section and replace with different knowledge:
+Find the `chunks = [...]` section and replace with different knowledge:
 
+```python
 chunks = [
     Document(
         page_content="OVHcloud is a European cloud provider that keeps your data sovereign - meaning your data stays where you put it, not scattered across unknown servers in foreign countries. Perfect for companies who like to know where their bits and bytes are vacationing!",
@@ -604,21 +671,30 @@ chunks = [
         metadata={"source": "ovh_facts", "chunk_id": 4}
     )
 ]
-B. Try Different Questions
+```
 
-Modify the test_queries list to ask questions relevant to your new knowledge base:
+### B. Try Different Questions
 
+Modify the `test_queries` list to ask questions relevant to your new knowledge base:
+
+```python
 test_queries = [
     "What makes OVHcloud different for data sovereignty?",
     "How does OVHcloud keep pricing predictable?",
     "Tell me about OVHcloud's cooling technology",
     "How do I bake a perfect soufflé?"  # Irrelevant question to test boundaries
 ]
-C. Test Different Models
+```
+
+### C. Test Different Models
 
 Create a quick model comparison script:
 
+```bash
 nano model_comparison.py
+```
+
+```python
 from test_rag_ovh import OVHEmbeddings
 import requests
 import os
@@ -642,12 +718,21 @@ def compare_embeddings():
 
 if __name__ == "__main__":
     compare_embeddings()
+```
+
+```bash
 python model_comparison.py
-D. Experiment with Similarity Thresholds
+```
+
+### D. Experiment with Similarity Thresholds
 
 Create a similarity experiment:
 
+```bash
 nano similarity_experiment.py
+```
+
+```python
 from langchain_community.vectorstores import FAISS
 from langchain.schema import Document
 from test_rag_ovh import OVHEmbeddings
@@ -677,12 +762,21 @@ def test_similarity_thresholds():
 
 if __name__ == "__main__":
     test_similarity_thresholds()
+```
+
+```bash
 python similarity_experiment.py
-E. Create Your Own RAG Application
+```
+
+### E. Create Your Own RAG Application
 
 Try building a simple RAG app for a cooking assistant:
 
+```bash
 nano my_rag_app.py
+```
+
+```python
 from test_rag_ovh import OVHEmbeddings, OVHLLM, Document
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
@@ -755,15 +849,23 @@ def interactive_ovhcloud_chat():
 
 if __name__ == "__main__":
     interactive_ovhcloud_chat()
+```
+
+```bash
 python my_rag_app.py
+```
 
 Try asking: "What makes OVHcloud's pricing different?" or "How does water cooling work in OVH data centers?"
 
-F. Performance Optimization Experiments
+### F. Performance Optimization Experiments
 
 Test different configurations:
 
+```bash
 nano optimization_test.py
+```
+
+```python
 import time
 from test_rag_ovh import OVHEmbeddings, OVHLLM, Document
 from langchain_community.vectorstores import FAISS
@@ -807,12 +909,21 @@ def test_chunk_sizes():
 
 if __name__ == "__main__":
     test_chunk_sizes()
+```
+
+```bash
 python optimization_test.py
-G. Save Your Experiments
+```
+
+### G. Save Your Experiments
 
 Document your findings:
 
+```bash
 nano my_experiments.md
+```
+
+```markdown
 # My RAG Experiments with OVHcloud AI Endpoints
 
 ## What I Tested
@@ -843,23 +954,30 @@ nano my_experiments.md
 - [ ] Try multilingual queries (French, German, Spanish)
 - [ ] Compare with other cloud provider knowledge bases
 - [ ] Optimize for customer support scenarios
+```
 
-Try these experiments to understand:
+**Try these experiments to understand:**
 
-How OVHcloud-specific content affects RAG performance
-What chunk sizes work best for technical cloud information
-How similarity search quality changes with cloud provider data
-Performance trade-offs between speed and accuracy in business contexts
+- How OVHcloud-specific content affects RAG performance
+- What chunk sizes work best for technical cloud information
+- How similarity search quality changes with cloud provider data
+- Performance trade-offs between speed and accuracy in business contexts
 
 Run each experiment and modify the OVHcloud examples to match your specific needs!
 
-Step 13: Clean Up
+## Step 13: Clean Up
+
+```bash
 # Deactivate virtual environment
 deactivate
 
 # Remove test directory if needed (optional)
 # rm -rf ~/rag-ovh-test
-Quick Start Commands Summary
+```
+
+## Quick Start Commands Summary
+
+```bash
 # Complete setup in one go
 mkdir ~/rag-ovh-test && cd ~/rag-ovh-test && python3 -m venv venv && source venv/bin/activate && pip install langchain langchain-community faiss-cpu requests openai python-dotenv numpy
 
@@ -877,13 +995,15 @@ python performance_test.py
 
 # Test documentation examples
 python test_ovh_docs_example.py
-Expected Results
+```
+
+## Expected Results
 
 If everything works correctly, you should see:
 
-Connection test: Both embedding and LLM APIs responding
-RAG system: Successfully retrieving relevant chunks and generating contextual responses
-Performance: Setup in ~10-30 seconds, queries in ~2-5 seconds each
-Documentation examples: Successful similarity calculations matching OVHcloud's examples
+1.  **Connection test**: Both embedding and LLM APIs responding
+2.  **RAG system**: Successfully retrieving relevant chunks and generating contextual responses
+3.  **Performance**: Setup in ~10-30 seconds, queries in ~2-5 seconds each
+4.  **Documentation examples**: Successful similarity calculations matching OVHcloud's examples
 
 This confirms the code examples in the training script work with actual OVHcloud AI Endpoints.
