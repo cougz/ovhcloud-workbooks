@@ -13,7 +13,7 @@ Ein komplettes RAG-System, das:
 ## Lernpfad
 
 1. [**Einrichtungsanleitung**](setup-guide.md) - Vollständiges Schritt-für-Schritt-Tutorial
-2. **Skripte herunterladen** - [Alle Python-Dateien](/public-cloud/ai-endpoints/rag-tutorial/scripts/)
+2. **Skripte herunterladen** - [Alle Python-Dateien](/ovhcloud-workbooks/public-cloud/ai-endpoints/rag-tutorial/scripts/)
 
 ## Schnellstart
 
@@ -24,4 +24,4 @@ Ein komplettes RAG-System, das:
     - Linux-Umgebung (Debian 12 empfohlen)
 
 [Tutorial starten](setup-guide.md){ .md-button .md-button--primary }
-[Skripte herunterladen](/public-cloud/ai-endpoints/rag-tutorial/scripts/){ .md-button }
+[Skripte herunterladen](/ovhcloud-workbooks/public-cloud/ai-endpoints/rag-tutorial/scripts/){ .md-button }

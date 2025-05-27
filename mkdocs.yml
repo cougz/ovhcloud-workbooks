@@ -72,11 +72,11 @@ plugins:
 extra:
   alternate:
     - name: English
-      link: /
+      link: /ovhcloud-workbooks/
       lang: en
     - name: Français
-      link: /fr/
+      link: /ovhcloud-workbooks/fr/
       lang: fr
     - name: Deutsch
-      link: /de/
+      link: /ovhcloud-workbooks/de/
       lang: de
