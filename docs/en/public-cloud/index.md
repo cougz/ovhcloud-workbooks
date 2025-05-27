@@ -3,7 +3,7 @@
 Comprehensive tutorials for OVHcloud Public Cloud services.
 
 ## AI Endpoints
-- [RAG Tutorial](/ovhcloud-workbooks/public-cloud/ai-endpoints/rag-tutorial/) - Complete guide to Retrieval-Augmented Generation for testing
+- [RAG Tutorial](/ovhcloud-workbooks/en/public-cloud/ai-endpoints/rag-tutorial/) - Complete guide to Retrieval-Augmented Generation for testing
 
 ## Coming Soon
 - Compute tutorials
