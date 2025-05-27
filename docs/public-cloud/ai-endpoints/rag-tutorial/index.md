@@ -1,6 +1,6 @@
 # RAG with OVHcloud AI Endpoints Tutorial
 
-Build production-ready Retrieval-Augmented Generation systems using OVHcloud AI Endpoints.
+Build Retrieval-Augmented Generation systems using OVHcloud AI Endpoints.
 
 ## What You'll Build
 
