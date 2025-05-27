@@ -716,7 +716,7 @@ chunks = [
         metadata={"source": "ovh_facts", "chunk_id": 1}
     ),
     Document(
-        page_content="OVHcloud offers predictable pricing with no surprise bills at month-end. Unlike some cloud providers who charge you for breathing near their servers, OVH tells you upfront what you'll pay. It's like having a honest mechanic, but for cloud computing!",
+        page_content="OVHcloud offers predictable pricing with no surprise bills at month-end. Unlike some cloud providers who charge you for breathing near their servers, OVHcloud tells you upfront what you'll pay. It's like having a honest mechanic, but for cloud computing!",
         metadata={"source": "ovh_facts", "chunk_id": 2}
     ),
     Document(
