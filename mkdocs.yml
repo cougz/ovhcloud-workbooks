@@ -31,7 +31,7 @@ theme:
     - content.code.copy
     - navigation.indexes
     - content.tabs.link
-  logo: assets/logo.svg
+  logo: assets/ovhcloud.svg
 
 plugins:
   - search
