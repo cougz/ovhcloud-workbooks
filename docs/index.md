@@ -1,20 +1,17 @@
----
-title: OVHcloud TechLabs - Workbooks
----
-
 # OVHcloud TechLabs - Workbooks
 
-<script>
-// Redirect to English version
-window.location.href = '/ovhcloud-workbooks/en/';
-</script>
+Welcome to the comprehensive collection of tutorials and workbooks for OVHcloud services.
 
-<noscript>
-<meta http-equiv="refresh" content="0; url=/ovhcloud-workbooks/en/">
-</noscript>
+## Available Workbooks
 
-If you are not redirected automatically, please choose your language:
+### Public Cloud
 
-- [🇺🇸 English](/ovhcloud-workbooks/en/)
-- [🇫🇷 Français](/ovhcloud-workbooks/fr/)  
-- [🇩🇪 Deutsch](/ovhcloud-workbooks/de/)
+#### AI Endpoints
+- [**RAG Tutorial**](/ovhcloud-workbooks/public-cloud/ai-endpoints/rag-tutorial/) - Build lab-ready RAG systems using OVHcloud AI Endpoints
+
+### Coming Soon
+- Object Storage tutorials
+- Kubernetes workbooks
+- Database guides
+
+[Browse All Workbooks](/ovhcloud-workbooks/public-cloud/){ .md-button .md-button--primary }

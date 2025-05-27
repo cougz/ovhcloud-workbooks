@@ -4,7 +4,7 @@ Learn to build AI applications using OVHcloud AI Endpoints.
 
 ## Available Tutorials
 
-### [RAG Tutorial](/ovhcloud-workbooks/en/public-cloud/ai-endpoints/rag-tutorial/)
+### [RAG Tutorial](/ovhcloud-workbooks/public-cloud/ai-endpoints/rag-tutorial/)
 Build Retrieval-Augmented Generation systems for testing with:
 - Step-by-step setup guide
 - Real OVHcloud integration
