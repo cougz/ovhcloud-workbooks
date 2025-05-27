@@ -31,11 +31,10 @@ theme:
     - content.code.copy
     - navigation.indexes
     - content.tabs.link
-    - language.selector
 
 nav:
   - English:
-    - Home: index.md
+    - Home: en/index.md
     - Public Cloud:
       - en/public-cloud/index.md
       - AI Endpoints:
@@ -67,7 +66,7 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets:
-      base_path: ['.', 'public-cloud/ai-endpoints/rag-tutorial/scripts', 'docs/en/public-cloud/ai-endpoints/rag-tutorial/scripts']
+      base_path: ['.', 'docs/en/public-cloud/ai-endpoints/rag-tutorial/scripts']
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -91,7 +90,7 @@ plugins:
 extra:
   alternate:
     - name: English
-      link: /ovhcloud-workbooks/
+      link: /ovhcloud-workbooks/en/
       lang: en
     - name: Français
       link: /ovhcloud-workbooks/fr/
