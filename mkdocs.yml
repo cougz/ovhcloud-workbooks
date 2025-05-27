@@ -1,0 +1,43 @@
+site_name: OVH Workbooks
+site_description: Comprehensive tutorials and workbooks for OVHcloud services
+site_url: https://yourusername.github.io/ovh-workbooks
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - navigation.indexes
+
+nav:
+  - Home: index.md
+  - Public Cloud:
+    - public-cloud/index.md
+    - AI Endpoints:
+      - public-cloud/ai-endpoints/index.md
+      - RAG Tutorial:
+        - public-cloud/ai-endpoints/rag-tutorial/index.md
+        - Setup Guide: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ['.', 'public-cloud/ai-endpoints/rag-tutorial/scripts']
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
