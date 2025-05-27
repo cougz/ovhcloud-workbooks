@@ -34,14 +34,33 @@ theme:
     - language.selector
 
 nav:
-  - Home: index.md
-  - Public Cloud:
-    - public-cloud/index.md
-    - AI Endpoints:
-      - public-cloud/ai-endpoints/index.md
-      - RAG Tutorial:
-        - public-cloud/ai-endpoints/rag-tutorial/index.md
-        - Setup Guide: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+  - English:
+    - Home: index.md
+    - Public Cloud:
+      - public-cloud/index.md
+      - AI Endpoints:
+        - public-cloud/ai-endpoints/index.md
+        - RAG Tutorial:
+          - public-cloud/ai-endpoints/rag-tutorial/index.md
+          - Setup Guide: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+  - Français:
+    - Accueil: fr/index.md
+    - Cloud Public:
+      - fr/public-cloud/index.md
+      - Points de terminaison IA:
+        - fr/public-cloud/ai-endpoints/index.md
+        - Tutoriel RAG:
+          - fr/public-cloud/ai-endpoints/rag-tutorial/index.md
+          - Guide d'installation: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+  - Deutsch:
+    - Startseite: de/index.md
+    - Public Cloud:
+      - de/public-cloud/index.md
+      - KI-Endpunkte:
+        - de/public-cloud/ai-endpoints/index.md
+        - RAG-Tutorial:
+          - de/public-cloud/ai-endpoints/rag-tutorial/index.md
+          - Einrichtungsanleitung: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
 
 markdown_extensions:
   - pymdownx.highlight:

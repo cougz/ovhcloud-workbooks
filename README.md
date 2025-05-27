@@ -2,6 +2,11 @@
 
 A comprehensive collection of tutorials and workbooks for OVHcloud services.
 
+## Quick Links
+
+- **Documentation Site**: [https://cougz.github.io/ovhcloud-workbooks/](https://cougz.github.io/ovhcloud-workbooks/)
+- **Source Repository**: [https://github.com/cougz/ovhcloud-workbooks](https://github.com/cougz/ovhcloud-workbooks)
+
 ## Available Workbooks
 
 ### Public Cloud
@@ -44,7 +49,7 @@ ovh-workbooks/
 This repository uses MkDocs with the Material theme to generate documentation. To run locally:
 
 ```bash
-pip install mkdocs-material
+pip install mkdocs-material pymdown-extensions
 mkdocs serve
 ```
 
