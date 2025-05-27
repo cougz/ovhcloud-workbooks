@@ -1,0 +1,46 @@
+/* Force English tab to be active for English content */
+body[data-md-color-scheme] .md-tabs__item:nth-child(1) {
+    /* This targets the first tab (🇺🇸 English) */
+}
+
+/* Hide navigation tabs when they disappear and show proper state */
+.md-tabs[hidden] {
+    display: flex !important;
+}
+
+/* Force correct tab highlighting based on URL */
+body[data-md-source-file*="/en/"] .md-tabs__item:nth-child(1) {
+    background-color: var(--md-primary-fg-color--light);
+    opacity: 1;
+}
+
+body[data-md-source-file*="/fr/"] .md-tabs__item:nth-child(2) {
+    background-color: var(--md-primary-fg-color--light);
+    opacity: 1;
+}
+
+body[data-md-source-file*="/de/"] .md-tabs__item:nth-child(3) {
+    background-color: var(--md-primary-fg-color--light);
+    opacity: 1;
+}
+
+/* Alternative approach using URL detection */
+.md-tabs__item[href*="/en/"]:not([aria-current]) {
+    opacity: 0.7;
+}
+
+.md-tabs__item[href*="/en/"][aria-current="page"],
+.md-tabs__item[href*="/en/"][aria-current="true"] {
+    background-color: var(--md-primary-fg-color--light);
+    opacity: 1;
+}
+
+/* Ensure English navigation is highlighted for English pages */
+body:not([data-md-component="navigation"]) .md-tabs__item:first-child {
+    background-color: var(--md-primary-fg-color--light);
+}
+
+/* JavaScript-based fix for persistent state */
+.md-nav--primary .md-nav__item--active > .md-nav__link {
+    color: var(--md-accent-fg-color);
+}
