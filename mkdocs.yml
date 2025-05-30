@@ -53,16 +53,6 @@ plugins:
 
 # Extra configuration
 extra:
-  alternate:
-    - name: English
-      link: /ovhcloud-workbooks/en/
-      lang: en
-    - name: Français
-      link: /ovhcloud-workbooks/fr/
-      lang: fr
-    - name: Deutsch
-      link: /ovhcloud-workbooks/de/
-      lang: de
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/cougz/ovhcloud-workbooks
@@ -96,20 +86,11 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Home: 
-    - English: en/index.md
-    - Français: fr/index.md
-    - Deutsch: de/index.md
+  - Home: index.md
   - Public Cloud:
-    - English: en/public-cloud/index.md
-    - Français: fr/public-cloud/index.md
-    - Deutsch: de/public-cloud/index.md
+    - Overview: public-cloud/index.md
     - AI Endpoints:
-      - English: en/public-cloud/ai-endpoints/index.md
-      - Français: fr/public-cloud/ai-endpoints/index.md
-      - Deutsch: de/public-cloud/ai-endpoints/index.md
+      - Overview: public-cloud/ai-endpoints/index.md
       - RAG Tutorial:
-        - English: en/public-cloud/ai-endpoints/rag-tutorial/index.md
-        - Français: fr/public-cloud/ai-endpoints/rag-tutorial/index.md
-        - Deutsch: de/public-cloud/ai-endpoints/rag-tutorial/index.md
-        - Setup Guide: en/public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+        - Overview: public-cloud/ai-endpoints/rag-tutorial/index.md
+        - Setup Guide: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md

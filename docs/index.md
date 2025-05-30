@@ -1,17 +1,17 @@
----
-title: OVHcloud TechLabs - Workbooks
----
-
 # OVHcloud TechLabs - Workbooks
 
 Welcome to the comprehensive collection of tutorials and workbooks for OVHcloud services.
 
-<div class="grid cards" markdown>
+## Available Workbooks
 
-- :material-language-python: [English Documentation](/ovhcloud-workbooks/en/)
-- :material-language-python: [Documentation Française](/ovhcloud-workbooks/fr/)
-- :material-language-python: [Deutsche Dokumentation](/ovhcloud-workbooks/de/)
+### Public Cloud
 
-</div>
+#### AI Endpoints
+- [**RAG Tutorial**](/ovhcloud-workbooks/public-cloud/ai-endpoints/rag-tutorial/) - Build lab-ready RAG systems using OVHcloud AI Endpoints
 
-[Go to English Documentation](/ovhcloud-workbooks/en/){ .md-button .md-button--primary }
+### Coming Soon
+- Object Storage tutorials
+- Kubernetes workbooks
+- Database guides
+
+[Browse All Workbooks](/ovhcloud-workbooks/public-cloud/){ .md-button .md-button--primary }
