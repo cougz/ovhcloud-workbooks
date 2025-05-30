@@ -11,6 +11,10 @@ copyright: Copyright &copy; 2025 OVHcloud
 
 extra:
   generator: false
+  social:
+  - icon: fontawesome/brands/linkedin 
+    link: https://www.linkedin.com/company/ovhgroup/
+
 
 # Configuration
 theme:
