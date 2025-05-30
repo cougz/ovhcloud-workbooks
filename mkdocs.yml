@@ -9,6 +9,9 @@ repo_url: https://github.com/cougz/ovhcloud-workbooks
 # Copyright
 copyright: Copyright &copy; 2025 OVHcloud
 
+extra:
+  generator: false
+
 # Configuration
 theme:
   name: material
