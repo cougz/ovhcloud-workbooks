@@ -1,12 +1,9 @@
 import chainlit as cl
-# import json # Not directly used in this script but can be kept if your demo uses it
-# from datetime import datetime # Not directly used in this script
-from verification_demo import CarVerificationDemo # Ensure this file exists and class is defined
+from verification_demo import CarVerificationDemo
 import aiofiles
 from typing import Dict, List
 import re
 
-# Initialize our verification demo
 # Ensure CarVerificationDemo is properly defined in verification_demo.py
 try:
     demo = CarVerificationDemo()
@@ -231,12 +228,8 @@ async def show_verification_results(verification_result: Dict):
     original_report = verification_result.get("verification_report", "No report generated.")
 
     # 1. Fix formatting
-    # First, normalize very large gaps (3+ newlines to 2)
     formatted_report = re.sub(r'\n{3,}', '\n\n', original_report)
-    # After lines ending in '?', ':', or a quote, if followed by \n\n, make it \n
     formatted_report = re.sub(r'([?:"])\n\n', r'\1\n', formatted_report)
-    # After lines ending in an alphanumeric character, if followed by \n\n, make it \n
-    # This helps compact lists or paragraph breaks where not desired.
     formatted_report = re.sub(r'([a-zA-Z0-9])\n\n', r'\1\n', formatted_report)
 
 
@@ -256,13 +249,13 @@ async def show_verification_results(verification_result: Dict):
     negative_markers = [
         "No, it does not match their claim",
         "No, this does not match their claim",
-        "This does not match their claim", # Covers "This does not match their claim accurately" too.
+        "This does not match their claim",
         "Discrepancies found:",
         "There are significant discrepancies",
         "The damage is more extensive than just",
         "No, the damage is much more severe than what they claimed",
         "No, the photos do not generally match their claims",
-        "Yes, the inconsistencies suggest" # This indicates a problematic finding
+        "Yes, the inconsistencies suggest"
     ]
 
     for line in report_lines:
@@ -271,12 +264,12 @@ async def show_verification_results(verification_result: Dict):
         is_negative = any(stripped_line.startswith(marker) for marker in negative_markers)
 
         if is_positive:
-            if not stripped_line.startswith("✅"): # Avoid double emojis
+            if not stripped_line.startswith("✅"):
                  processed_lines.append(f"✅ {line.lstrip()}")
             else:
                  processed_lines.append(line)
         elif is_negative:
-            if not stripped_line.startswith("❌"): # Avoid double emojis
+            if not stripped_line.startswith("❌"):
                 processed_lines.append(f"❌ {line.lstrip()}")
             else:
                 processed_lines.append(line)
@@ -303,15 +296,9 @@ async def show_verification_results(verification_result: Dict):
         author="AI Analysis"
     ).send()
 
-async def ask_for_photos(): # This function is less likely to be called now but kept for completeness
+async def ask_for_photos():
     """Prompt for photo upload"""
     await cl.Message(
         content="📸 **Please upload your car photos!** Click the attachment button (📎) and select at least 3 photos.",
         author="Verification AI"
     ).send()
-
-# To run this application:
-# 1. Save this code as a Python file (e.g., `app.py`).
-# 2. Make sure you have a `verification_demo.py` file in the same directory
-#    with a `CarVerificationDemo` class that has a `verify_vehicle_claims` method.
-# 3. Run from your terminal: `chainlit run app.py -w`
