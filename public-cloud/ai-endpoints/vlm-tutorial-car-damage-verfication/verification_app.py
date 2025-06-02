@@ -4,12 +4,9 @@ import aiofiles
 from typing import Dict, List
 import re
 
-# Ensure CarVerificationDemo is properly defined in verification_demo.py
 try:
     demo = CarVerificationDemo()
 except NameError:
-    # Fallback if CarVerificationDemo is not defined, to prevent immediate crash
-    # In a real scenario, ensure verification_demo.py and CarVerificationDemo are correct
     class CarVerificationDemo:
         def verify_vehicle_claims(self, image_data_list, user_claims):
             # Dummy implementation
@@ -77,7 +74,7 @@ async def collect_manufacturer(manufacturer: str):
         content=f"""
 📝 **Claim #1:** {manufacturer} ✅
 
-Now, what **model** is it? (Camry, Civic, 3 Series, F-150, etc.)
+Now, what **model** is it? (Camry, Civic, 3 Series, Aventador, etc.)
         """,
         author="Verification AI"
     ).send()
