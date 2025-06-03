@@ -314,6 +314,21 @@ python test_vision_connection.py
 - Check token permissions and expiration
 - Regenerate token if needed
 
+## Demo Features
+
+✅ **Enhanced Formatting**: The verification results include:
+- **Green checkmarks (✅)** for correct claims
+- **Red crosses (❌)** for incorrect claims  
+- **Structured sections** for easy reading
+- **Bold highlighting** for key findings
+- **Overall verdict** with visual indicators
+
+✅ **Interactive Experience**:
+- Step-by-step claim collection
+- Real-time photo processing
+- Detailed AI analysis reports
+- User-friendly web interface
+
 ## Clean Up
 
 ```bash
