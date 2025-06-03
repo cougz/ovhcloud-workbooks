@@ -347,6 +347,7 @@ mkdir results
 
 ```bash
 ```bash
+```bash
 # Complete demo setup (copy-paste friendly)
 mkdir ~/car-verification-demo && cd ~/car-verification-demo && \
 python3 -m venv venv && source venv/bin/activate
@@ -370,6 +371,7 @@ python test_vision_connection.py
 
 # Run the demo
 chainlit run verification_app.py --host 0.0.0.0 --port 8000
+```
 ```
 ```
 
