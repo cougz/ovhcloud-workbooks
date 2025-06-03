@@ -91,7 +91,6 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
-# Page tree
 nav:
   - Home: index.md
   - Public Cloud:
@@ -101,3 +100,6 @@ nav:
       - RAG Tutorial:
         - Overview: public-cloud/ai-endpoints/rag-tutorial/index.md
         - Setup Guide: public-cloud/ai-endpoints/rag-tutorial/setup-guide.md
+      - VLM Tutorial:
+        - Overview: public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/index.md
+        - Setup Guide: public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/setup-guide.md
