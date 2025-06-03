@@ -234,36 +234,40 @@ def format_verification_report(report: str) -> str:
             formatted_lines.append("")
             continue
             
-        # Format main verification sections (1., 2., 3., etc.)
+        # Format numbered verification sections (1., 2., 3., etc.)
         if re.match(r'^\d+\.\s+\w+\s+VERIFICATION:', stripped):
             formatted_lines.append(f"\n## {stripped}")
+            continue
+            
+        # Format OVERALL VERDICT section specially
+        if "OVERALL VERDICT" in stripped:
+            formatted_lines.append(f"\n## 🏁 OVERALL VERDICT:")
             continue
             
         # Format bullet points with checkmarks/crosses
         if stripped.startswith('* '):
             bullet_text = stripped[2:].strip()
             
-            # Check for positive responses
+            # Check for positive responses (matches)
             if any(phrase in bullet_text for phrase in [
                 "Yes, it matches their claim", "Yes, this matches their claim",
-                "matches their claim", "Very confident", "match their claim of",
-                "The photos provide clear evidence", "There are no significant discrepancies"
+                "matches their claim perfectly", "matches their claim accurately",
+                "Yes, it matches", "Very confident", "perfectly matches",
+                "accurately matches", "correct", "Yes, the photos generally match"
             ]):
                 formatted_lines.append(f"  ✅ **{bullet_text}**")
-            # Check for negative responses  
+            # Check for negative responses (doesn't match)
             elif any(phrase in bullet_text for phrase in [
                 "No, it does not match their claim", "No, this does not match their claim", 
-                "does not match their claim", "contradicting their statement",
-                "The differences", "inconsistencies", "discrepancies", "raise suspicion"
+                "does not match their claim", "doesn't match their claim",
+                "No, it doesn't fully match", "contradicting their statement",
+                "inconsistencies", "discrepancies", "suspicious", "No, the photos",
+                "The main discrepancies are", "doesn't fully match"
             ]):
                 formatted_lines.append(f"  ❌ **{bullet_text}**")
             else:
+                # Regular bullet point for neutral information
                 formatted_lines.append(f"  • {bullet_text}")
-            continue
-            
-        # Format OVERALL VERDICT section specially
-        if "OVERALL VERDICT" in stripped:
-            formatted_lines.append(f"\n## 🏁 {stripped}")
             continue
             
         # Add checkmarks to standalone Yes/No responses
@@ -273,9 +277,18 @@ def format_verification_report(report: str) -> str:
             else:
                 formatted_lines.append(f"❌ {stripped}")
             continue
+        
+        # Handle summary sections
+        if stripped.startswith("In summary"):
+            formatted_lines.append(f"\n**{stripped}**")
+            continue
             
-        # Default: add line as-is
-        formatted_lines.append(line)
+        # Default: add line as-is with proper indentation
+        if line.startswith(' ') and not line.startswith('  '):
+            # Single space indent - make it a regular paragraph
+            formatted_lines.append(line.strip())
+        else:
+            formatted_lines.append(line)
     
     return '\n'.join(formatted_lines)
 
