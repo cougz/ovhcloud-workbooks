@@ -219,61 +219,73 @@ async def run_verification():
         cl.user_session.set("current_step", "photos") 
         cl.user_session.set("car_photos", [])
 
+def format_verification_report(report: str) -> str:
+    """Enhanced formatting for verification reports with proper checkmarks and structure"""
+    
+    # Split into lines for processing
+    lines = report.split('\n')
+    formatted_lines = []
+    
+    for line in lines:
+        stripped = line.strip()
+        
+        # Skip empty lines
+        if not stripped:
+            formatted_lines.append("")
+            continue
+            
+        # Format main verification sections (1., 2., 3., etc.)
+        if re.match(r'^\d+\.\s+\w+\s+VERIFICATION:', stripped):
+            formatted_lines.append(f"\n## {stripped}")
+            continue
+            
+        # Format bullet points with checkmarks/crosses
+        if stripped.startswith('* '):
+            bullet_text = stripped[2:].strip()
+            
+            # Check for positive responses
+            if any(phrase in bullet_text for phrase in [
+                "Yes, it matches their claim", "Yes, this matches their claim",
+                "matches their claim", "Very confident", "match their claim of",
+                "The photos provide clear evidence", "There are no significant discrepancies"
+            ]):
+                formatted_lines.append(f"  ✅ **{bullet_text}**")
+            # Check for negative responses  
+            elif any(phrase in bullet_text for phrase in [
+                "No, it does not match their claim", "No, this does not match their claim", 
+                "does not match their claim", "contradicting their statement",
+                "The differences", "inconsistencies", "discrepancies", "raise suspicion"
+            ]):
+                formatted_lines.append(f"  ❌ **{bullet_text}**")
+            else:
+                formatted_lines.append(f"  • {bullet_text}")
+            continue
+            
+        # Format OVERALL VERDICT section specially
+        if "OVERALL VERDICT" in stripped:
+            formatted_lines.append(f"\n## 🏁 {stripped}")
+            continue
+            
+        # Add checkmarks to standalone Yes/No responses
+        if stripped.startswith(("Yes,", "No,")):
+            if stripped.startswith("Yes,"):
+                formatted_lines.append(f"✅ {stripped}")
+            else:
+                formatted_lines.append(f"❌ {stripped}")
+            continue
+            
+        # Default: add line as-is
+        formatted_lines.append(line)
+    
+    return '\n'.join(formatted_lines)
+
 async def show_verification_results(verification_result: Dict):
-    """Display the verification results with emojis and improved formatting"""
+    """Display the verification results with enhanced formatting"""
     user_claims = cl.user_session.get("user_claims", {})
     original_report = verification_result.get("verification_report", "No report generated.")
 
-    # 1. Fix formatting
-    formatted_report = re.sub(r'\n{3,}', '\n\n', original_report)
-    formatted_report = re.sub(r'([?:"])\n\n', r'\1\n', formatted_report)
-    formatted_report = re.sub(r'([a-zA-Z0-9])\n\n', r'\1\n', formatted_report)
-
-
-    # 2. Add Emojis
-    report_lines = formatted_report.split('\n')
-    processed_lines = []
-
-    positive_markers = [
-        "Yes, it matches their claim",
-        "Yes, this matches their claim",
-        "This matches their claim accurately",
-        "Yes, the photos generally match",
-        "The photos provide clear evidence supporting their claims",
-        "There are no significant discrepancies",
-        "Nothing appears suspicious or inconsistent"
-    ]
-    negative_markers = [
-        "No, it does not match their claim",
-        "No, this does not match their claim",
-        "This does not match their claim",
-        "Discrepancies found:",
-        "There are significant discrepancies",
-        "The damage is more extensive than just",
-        "No, the damage is much more severe than what they claimed",
-        "No, the photos do not generally match their claims",
-        "Yes, the inconsistencies suggest"
-    ]
-
-    for line in report_lines:
-        stripped_line = line.strip()
-        is_positive = any(stripped_line.startswith(marker) for marker in positive_markers)
-        is_negative = any(stripped_line.startswith(marker) for marker in negative_markers)
-
-        if is_positive:
-            if not stripped_line.startswith("✅"):
-                 processed_lines.append(f"✅ {line.lstrip()}")
-            else:
-                 processed_lines.append(line)
-        elif is_negative:
-            if not stripped_line.startswith("❌"):
-                processed_lines.append(f"❌ {line.lstrip()}")
-            else:
-                processed_lines.append(line)
-        else:
-            processed_lines.append(line)
-
-    verification_report_final = "\n".join(processed_lines)
+    # Apply enhanced formatting
+    formatted_report = format_verification_report(original_report)
     
     await cl.Message(
         content=f"""# 🎉 Verification Complete!
@@ -289,7 +301,7 @@ async def show_verification_results(verification_result: Dict):
     ).send()
     
     await cl.Message(
-        content=verification_report_final,
+        content=formatted_report,
         author="AI Analysis"
     ).send()
 
