@@ -147,7 +147,7 @@ Add your OVHcloud token:
 OVH_AI_ENDPOINTS_ACCESS_TOKEN=your_actual_token_here
 
 # AI Model Endpoint
-QWEN_URL=https://qwen2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions
+QWEN_URL=https://qwen-2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1/chat/completions
 ```
 
 ## Step 6: Test OVHcloud Vision API Connectivity
