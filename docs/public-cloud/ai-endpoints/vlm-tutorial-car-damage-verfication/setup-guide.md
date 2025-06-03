@@ -214,13 +214,11 @@ Testing OVHcloud Vision API connectivity...
 Now that you have all the files, you can run the car verification demo:
 
 ```bash
-```bash
 # First, test the API connection
 python test_vision_connection.py
 
 # If successful, run the interactive demo
 chainlit run verification_app.py --host 0.0.0.0 --port 8000
-```
 ```
 
 You should see:
@@ -314,21 +312,6 @@ python test_vision_connection.py
 - Check token permissions and expiration
 - Regenerate token if needed
 
-## Demo Features
-
-✅ **Enhanced Formatting**: The verification results include:
-- **Green checkmarks (✅)** for correct claims
-- **Red crosses (❌)** for incorrect claims  
-- **Structured sections** for easy reading
-- **Bold highlighting** for key findings
-- **Overall verdict** with visual indicators
-
-✅ **Interactive Experience**:
-- Step-by-step claim collection
-- Real-time photo processing
-- Detailed AI analysis reports
-- User-friendly web interface
-
 ## Clean Up
 
 ```bash
@@ -345,8 +328,6 @@ mkdir results
 
 ## Quick Start Commands Summary
 
-```bash
-```bash
 ```bash
 # Complete demo setup (copy-paste friendly)
 mkdir ~/car-verification-demo && cd ~/car-verification-demo && \
@@ -371,8 +352,6 @@ python test_vision_connection.py
 
 # Run the demo
 chainlit run verification_app.py --host 0.0.0.0 --port 8000
-```
-```
 ```
 
 This demo successfully demonstrates OVHcloud's Vision Language Model capabilities for practical verification tasks while maintaining clear educational boundaries.
