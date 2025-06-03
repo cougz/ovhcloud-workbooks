@@ -8,6 +8,7 @@ This folder contains all the Python scripts for the Vision Language Model (VLM) 
 - `verification_demo.py` - Core car verification logic using VLM
 - `verification_app.py` - Interactive Chainlit web application
 - `chainlit.md` - Welcome page content for the Chainlit app
+- `requirements.txt` - Python dependencies
 
 ## What This Demo Does
 
@@ -24,14 +25,14 @@ This demonstrates how Vision Language Models can analyze visual content and cros
 
 ### 1. Prerequisites
 
-Follow the [complete VLM tutorial](../../../docs/public-cloud/ai-endpoints/vlm-tutorial/setup-guide.md) for detailed setup instructions.
+Follow the [complete VLM tutorial setup guide](https://cougz.github.io/ovhcloud-workbooks/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/setup-guide/) for detailed setup instructions.
 
 ### 2. Environment Setup
 
 Create a `.env` file with your OVHcloud credentials:
 ```
 OVH_AI_ENDPOINTS_ACCESS_TOKEN=your_token_here
-QWEN_URL=https://qwen2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions
+QWEN_URL=https://qwen-2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1/chat/completions
 ```
 
 ### 3. Install Dependencies
@@ -74,13 +75,13 @@ python verification_demo.py
    - Model recognition
    - Color verification
    - Damage assessment
-4. **Report Generation**: Detailed verification report with confidence levels
+4. **Report Generation**: Detailed verification report with confidence levels and visual indicators
 
 ### Key Features
 
 - **Multi-image analysis** - Processes up to 3 photos simultaneously
 - **Structured verification** - Systematically checks each claim type
-- **Confidence scoring** - AI indicates certainty levels
+- **Enhanced formatting** - Green checkmarks (✅) for matches, red crosses (❌) for mismatches
 - **Interactive interface** - User-friendly web application
 - **Real-time processing** - Live verification with visual feedback
 
@@ -98,6 +99,7 @@ See `requirements.txt` for all dependencies:
 - `pillow` - Image processing
 - `requests` - API communication
 - `python-dotenv` - Environment management
+- `aiofiles` - Async file operations
 
 ## Educational Value
 
@@ -122,6 +124,7 @@ This tutorial demonstrates:
 - **Image upload problems**: Check file formats (PNG, JPG, JPEG, WebP supported)
 - **Slow performance**: Reduce image sizes or number of photos
 - **Token errors**: Verify your OVHcloud AI Endpoints token in `.env`
+- **Formatting issues**: The enhanced formatting automatically adds checkmarks and structure
 
 ---
 
