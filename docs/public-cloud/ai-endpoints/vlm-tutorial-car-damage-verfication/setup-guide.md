@@ -109,29 +109,22 @@ source venv/bin/activate  # Linux/macOS
 pip install --upgrade pip
 ```
 
-## Step 4: Install Demo Dependencies
+## Step 4: Download Requirements File
+
+Download the requirements file from the repository:
 
 ```bash
-# Install required packages for the demo
-pip install chainlit==1.0.504 \
-           pillow==10.1.0 \
-           requests==2.31.0 \
-           python-dotenv==1.0.0 \
-           aiofiles==23.2.1
+# Download requirements.txt
+curl -o requirements.txt https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/requirements.txt
+
+# Install all dependencies
+pip install -r requirements.txt
 
 # Verify installations
 pip list | grep -E "(chainlit|pillow|requests)"
 ```
 
-You should see output like:
-
-```
-aiofiles                 23.2.1
-chainlit                 1.0.504
-pillow                   10.1.0
-python-dotenv            1.0.0
-requests                 2.31.0
-```
+You should see output showing the installed packages and their versions.
 
 ## Step 5: Configure Environment Variables
 
@@ -150,111 +143,54 @@ OVH_AI_ENDPOINTS_ACCESS_TOKEN=your_actual_token_here
 QWEN_URL=https://qwen-2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1/chat/completions
 ```
 
-## Step 6: Test OVHcloud Vision API Connectivity
+## Step 6: Download Tutorial Files
 
-```bash
-nano test_vision_connection.py
-```
+Download all the required Python files from the repository:
 
-```python
-import os
-import base64
-import requests
-from PIL import Image, ImageDraw
-import io
-from dotenv import load_dotenv
+=== "Option 1: Download Individual Files"
+    Download each file individually from GitHub:
+    
+    ```bash
+    # Download all required files
+    curl -o requirements.txt https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/requirements.txt
+    curl -o test_vision_connection.py https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/test_vision_connection.py
+    curl -o verification_demo.py https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/verification_demo.py
+    curl -o verification_app.py https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/verification_app.py
+    curl -o chainlit.md https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/chainlit.md
+    ```
 
-load_dotenv()
+=== "Option 2: Clone Repository"
+    Clone the entire repository and copy the files:
+    
+    ```bash
+    # Clone the repository
+    git clone https://github.com/cougz/ovhcloud-workbooks.git
+    
+    # Copy VLM tutorial files to your demo directory
+    cp ovhcloud-workbooks/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/requirements.txt .
+    cp ovhcloud-workbooks/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/*.py .
+    cp ovhcloud-workbooks/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/chainlit.md .
+    
+    # Clean up
+    rm -rf ovhcloud-workbooks
+    ```
 
-def create_test_image():
-    """Create a simple test image for API testing"""
-    # Create a 200x150 test image
-    img = Image.new('RGB', (200, 150), color='lightblue')
-    draw = ImageDraw.Draw(img)
+=== "Option 3: Manual Download"
+    Visit the GitHub repository and download files manually:
     
-    # Draw a simple car shape
-    draw.rectangle([50, 60, 150, 110], fill='red', outline='black', width=2)
-    draw.ellipse([60, 100, 80, 120], fill='black')  # Left wheel
-    draw.ellipse([120, 100, 140, 120], fill='black')  # Right wheel
-    draw.text((10, 10), "TEST CAR", fill='black')
-    
-    # Convert to base64
-    buffer = io.BytesIO()
-    img.save(buffer, format='PNG')
-    buffer.seek(0)
-    
-    return base64.b64encode(buffer.getvalue()).decode('utf-8')
+    1. Go to [VLM Tutorial Files](https://github.com/cougz/ovhcloud-workbooks/tree/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication)
+    2. Click on each file and download:
+       - `requirements.txt`
+       - `test_vision_connection.py`
+       - `verification_demo.py` 
+       - `verification_app.py`
+       - `chainlit.md`
+    3. Save them to your `~/car-verification-demo` directory
 
-def test_vision_api():
-    """Test OVHcloud Vision API connectivity"""
-    token = os.getenv("OVH_AI_ENDPOINTS_ACCESS_TOKEN")
-    url = os.getenv("QWEN_URL")
-    model = "Qwen2.5-VL-72B-Instruct"  # Fixed model for demo
-    
-    if not token:
-        print("❌ No token found. Check your .env file.")
-        return False
-    
-    # Create test image
-    test_image_b64 = create_test_image()
-    
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "model": model,
-        "messages": [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": "What do you see in this image? Describe it briefly."
-                    },
-                    {
-                        "type": "image_url",
-                        "image_url": {
-                            "url": f"data:image/png;base64,{test_image_b64}"
-                        }
-                    }
-                ]
-            }
-        ],
-        "max_tokens": 100,
-        "temperature": 0.1
-    }
-    
-    try:
-        print("🔍 Testing OVHcloud Vision API...")
-        response = requests.post(url, json=payload, headers=headers, timeout=30)
-        
-        if response.status_code == 200:
-            result = response.json()
-            ai_response = result['choices'][0]['message']['content']
-            print(f"✅ Vision API works!")
-            print(f"🤖 AI Response: {ai_response}")
-            return True
-        else:
-            print(f"❌ API failed: {response.status_code}")
-            print(f"Response: {response.text}")
-            return False
-            
-    except Exception as e:
-        print(f"❌ Connection error: {e}")
-        return False
+!!! tip "File Contents"
+    You can also view the complete source code for each file in the [repository](https://github.com/cougz/ovhcloud-workbooks/tree/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication) to understand how the VLM verification system works.
 
-if __name__ == "__main__":
-    print("Testing OVHcloud Vision API connectivity...\n")
-    
-    if test_vision_api():
-        print("\n🎉 Vision API is working! Ready for demo testing.")
-    else:
-        print("\n⚠️ Vision API test failed. Check your token and try again.")
-```
-
-## Step 7: Run Vision API Connectivity Test
+## Step 7: Test OVHcloud Vision API Connectivity
 
 ```bash
 # Test the vision API connection
@@ -273,53 +209,18 @@ Testing OVHcloud Vision API connectivity...
 🎉 Vision API is working! Ready for demo testing.
 ```
 
-## Step 8: Create the Verification Demo Engine
+## Step 8: Launch the Interactive Demo
+
+Now that you have all the files, you can run the car verification demo:
 
 ```bash
-nano verification_demo.py
-```
-
-Copy the complete verification_demo.py code from the tutorial files.
-
-## Step 9: Create the Interactive Demo Interface
-
 ```bash
-nano verification_app.py
-```
+# First, test the API connection
+python test_vision_connection.py
 
-Copy the complete verification_app.py code from the tutorial files.
-
-Now create the Chainlit welcome file:
-
-```bash
-nano chainlit.md
-```
-
-```markdown
-# 🕵️ Car Verification Challenge
-
-Welcome to the ultimate AI fact-checking experiment! 
-
-**The Challenge:** Tell me about your car, then upload photos. Let's see if the AI can catch you if you're not being truthful!
-
-## How it works:
-1. **You tell me** your car's details
-2. **Upload 3 photos** of the actual vehicle
-3. **AI analyzes** what it really sees 
-4. **Get verdict** - do your claims match reality?
-
-## Ready to start?
-The AI will ask for your car details step by step. Feel free to tell the truth... or try to trick the AI! 😉
-
----
-*Powered by OVHcloud AI Endpoints - Qwen2.5-VL-72B-Instruct*
-```
-
-## Step 10: Launch the Interactive Demo
-
-```bash
-# Run the Chainlit application
+# If successful, run the interactive demo
 chainlit run verification_app.py --host 0.0.0.0 --port 8000
+```
 ```
 
 You should see:
@@ -332,7 +233,7 @@ You should see:
 !!! note "Network Access"
     The demo is accessible from any device on your network via `http://YOUR_SERVER_IP:8000`
 
-## Step 11: Demo Testing Scenarios
+## Step 9: Demo Testing Scenarios
 
 ### Scenario A: Truth Test
 
@@ -430,20 +331,31 @@ mkdir results
 ## Quick Start Commands Summary
 
 ```bash
+```bash
 # Complete demo setup (copy-paste friendly)
 mkdir ~/car-verification-demo && cd ~/car-verification-demo && \
-python3 -m venv venv && source venv/bin/activate && \
-pip install chainlit pillow requests python-dotenv aiofiles
+python3 -m venv venv && source venv/bin/activate
+
+# Download all tutorial files
+curl -o requirements.txt https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/requirements.txt
+curl -o test_vision_connection.py https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/test_vision_connection.py
+curl -o verification_demo.py https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/verification_demo.py
+curl -o verification_app.py https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/verification_app.py
+curl -o chainlit.md https://raw.githubusercontent.com/cougz/ovhcloud-workbooks/main/public-cloud/ai-endpoints/vlm-tutorial-car-damage-verfication/chainlit.md
+
+# Install dependencies
+pip install -r requirements.txt
 
 # Create .env with your token
 echo "OVH_AI_ENDPOINTS_ACCESS_TOKEN=your_token_here" > .env
-echo "QWEN_URL=https://qwen2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions" >> .env
+echo "QWEN_URL=https://qwen-2-5-vl-72b-instruct.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1/chat/completions" >> .env
 
 # Test connection
 python test_vision_connection.py
 
 # Run the demo
 chainlit run verification_app.py --host 0.0.0.0 --port 8000
+```
 ```
 
 This demo successfully demonstrates OVHcloud's Vision Language Model capabilities for practical verification tasks while maintaining clear educational boundaries.
